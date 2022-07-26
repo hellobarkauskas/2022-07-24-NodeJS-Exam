@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require('mysql2/promise');
 const Joi = require('joi');
 const { dbConfig } = require('../../config');
+const { authorised } = require('../../middlewares/authentication');
 const router = express.Router();
 
 const addGroupSchema = Joi.object({
@@ -21,7 +22,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/', async (req,res) => {
+router.post('/', authorised, async (req,res) => {
     let addGroupData = req.body;
 
     try {
