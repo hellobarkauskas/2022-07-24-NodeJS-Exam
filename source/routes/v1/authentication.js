@@ -65,10 +65,11 @@ router.post('/login', async (req, res) => {
             return res.status(400).send({ error: 'Wrong email or password' });
         }
 
-        // const token = jwt.sign({ userId: users[0].id, jwtSecret});
+        const token = jwt.sign({ userId: users[0].id}, jwtSecret);
 
-        // res.send({ token: token });
-        res.send(users);
+        console.log(token, users[0].id);
+
+        res.send({ token: token, userId: users[0].id});
     } catch (error) {
         console.log(error);
         res.status(500).send({ error: 'Unexpected error. Please try again' });
