@@ -14,8 +14,10 @@ const authorised = (req, res, next) => {
         const tokenData = jwt.verify(token, jwtSecret);
         
         req.user = {
-            userId: tokenData.user_id,
+            user_id: tokenData.user_id,
         }
+
+        console.log(req.user);
 
         next();
     } catch {
