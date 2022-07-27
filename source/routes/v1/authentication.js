@@ -71,7 +71,6 @@ router.post('/login', async (req, res) => {
 
         res.send({ token: token, user_id: users[0].id});
     } catch (error) {
-        console.log(error);
         res.status(500).send({ error: 'Unexpected error. Please try again' });
     };
 });
