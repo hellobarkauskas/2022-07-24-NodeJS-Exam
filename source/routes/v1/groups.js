@@ -17,8 +17,7 @@ router.get('/', async (req, res) => {
         con.end();
         res.send(groups);
     } catch (error) {
-        console.log(error)
-        res.status(500).send({ error: 'Unexpected error. Try again' });
+        return res.status(500).send({ error: 'Unexpected error. Try again' });
     }
 });
 
@@ -32,9 +31,8 @@ router.post('/', authorised, async (req,res) => {
         const [dbResponse] = await con.query('INSERT INTO `groups` SET ?', [addGroupData]);
 
         con.end();
-        res.send({ message: 'Group added'});
+        res.send({ message: 'New group added'});
     } catch (error) {
-        console.log(error)
         return res.status(400).send({ error: 'Missing information' });
     }
 });
