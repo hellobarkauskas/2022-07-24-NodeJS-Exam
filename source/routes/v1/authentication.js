@@ -23,7 +23,7 @@ router.post('/register', async (req, res) => {
     try {
         registerData = await registerSchema.validateAsync(registerData);
     } catch (error) {
-        return res.status(400).send({ error: 'Missing information' });
+        return res.status(400).send({ error: 'Missing full name or email' });
     };
 
     try {
