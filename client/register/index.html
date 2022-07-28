@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
+    <link rel="stylesheet" href="../style.css">
+    <title>Register Page</title>
+</head>
+<body>
+    <h1>New User</h1>
+    
+
+    <div class="base-style">
+        <form id="register-form" class="register-form">
+            <label for="fullname">Full Name</label>
+            <input type="text" name="fullname" id="fullname">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+            <label for="password">Password</label>
+            <input type="text" name="password" id="password">
+            <label for="repeat-password">Repeat Password</label>
+            <input type="text" name="repeatpassword" id="repeatpassword">
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <div id="error-message"></div>
+
+    <script src="./register.js" type="module"></script>
+</body>
+</html>
