@@ -17,7 +17,7 @@ const register = async (user) => {
         return;
     };
 
-    navigateToPage('/login');
+    navigateToPage('login');
 };
 
 document.getElementById('register-form').addEventListener('submit', (event) => {
