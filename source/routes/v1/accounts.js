@@ -8,7 +8,7 @@ router.get('/', authorised, async (req, res) => {
     try {
         const userId = req.user.user_id;
         const con = await mysql.createConnection(dbConfig);
-        const [accounts] = await con.query('SELECT users.full_name AS user_id, `groups`.name AS group_id FROM accounts LEFT JOIN users ON accounts.user_id = users.id LEFT JOIN `groups` ON accounts.group_id = `groups`.id WHERE accounts.user_id = ?', [userId]);
+        const [accounts] = await con.query('SELECT group_id, `groups`.name AS group_name, users.full_name AS user_id FROM accounts LEFT JOIN users ON accounts.user_id = users.id LEFT JOIN `groups` ON accounts.group_id = `groups`.id WHERE accounts.user_id = ?', [userId]);
 
         con.end();
         res.send(accounts);
