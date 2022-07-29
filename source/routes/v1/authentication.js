@@ -23,8 +23,8 @@ router.post('/register', async (req, res) => {
     try {
         registerData = await registerSchema.validateAsync(registerData);
     } catch (error) {
-        return res.status(400).send({ error: 'Missing information' });
-    };
+        return res.status(400).send({ error: 'Missing full name or email' });
+    }
 
     try {
         const hashedPassword = bcrypt.hashSync(registerData.password);
@@ -37,7 +37,7 @@ router.post('/register', async (req, res) => {
         res.send({ message: 'Registration complete'})
     } catch (error) {
         res.status(500).send({ error: 'Unexpected error. Please try again' });
-    };
+    }
 });
 
 router.post('/login', async (req, res) => {
@@ -47,7 +47,7 @@ router.post('/login', async (req, res) => {
         loginData = await loginSchema.validateAsync(loginData);
     } catch (error) {
         return res.status(400).send({ error: 'Wrong email or password' });
-    };
+    }
 
     try {
         const con = await mysql.createConnection(dbConfig);
@@ -65,15 +65,14 @@ router.post('/login', async (req, res) => {
             return res.status(400).send({ error: 'Wrong email or password' });
         }
 
-        const token = jwt.sign({ userId: users[0].id}, jwtSecret);
+        const token = jwt.sign({ user_id: users[0].id}, jwtSecret);
 
         console.log(token, users[0].id);
 
-        res.send({ token: token, userId: users[0].id});
+        res.send({ token: token, user_id: users[0].id});
     } catch (error) {
-        console.log(error);
         res.status(500).send({ error: 'Unexpected error. Please try again' });
-    };
+    }
 });
 
 module.exports = router;
