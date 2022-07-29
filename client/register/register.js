@@ -33,13 +33,11 @@ document.getElementById('register-form').addEventListener('submit', (event) => {
         return;
     };
 
-
     register({
         full_name: elements.fullname.value,
         email: elements.email.value,
         password: elements.password.value && elements.repeatpassword.value,
     });
-
 
     document.getElementById('fullname').value = '';
     document.getElementById('email').value = '';

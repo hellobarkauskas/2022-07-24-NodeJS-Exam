@@ -11,7 +11,6 @@
 <body>
     <h1>New User</h1>
     
-
     <div class="base-style">
         <form id="register-form" class="register-form">
             <label for="fullname">Full Name</label>
@@ -19,14 +18,15 @@
             <label for="email">Email</label>
             <input type="email" name="email" id="email">
             <label for="password">Password</label>
-            <input type="text" name="password" id="password">
+            <input type="password" name="password" id="password">
             <label for="repeat-password">Repeat Password</label>
-            <input type="text" name="repeatpassword" id="repeatpassword">
+            <input type="password" name="repeatpassword" id="repeatpassword">
             <button type="submit">Register</button>
         </form>
+        <div id="error-message"></div>
+        <a href="../login">Go to login page</a>
     </div>
-    <div id="error-message"></div>
-
+    
     <script src="./register.js" type="module"></script>
 </body>
 </html>
