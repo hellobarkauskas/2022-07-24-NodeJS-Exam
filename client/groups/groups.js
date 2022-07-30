@@ -2,6 +2,35 @@ import { MAIN_URL } from '../config.js';
 
 const groupsList = document.getElementById('my-groups');
 const groupsSelect = document.getElementById('groups-option');
+const groupBills = document.getElementById('group-bills');
+
+export const fetchBillsForGroup = async (groupId) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${MAIN_URL}/bills/${Number(groupId)}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+    });
+
+    const billsForGroup = await response.json();
+
+    billsForGroup.forEach(bill => {
+        const bills = document.createElement('div');
+        groupBills.append(bills);
+        const billAmount = document.createElement('p');
+        const billDescription = document.createElement('p');
+
+        billAmount.innerHTML = `Amount: ${bill.amount}`;
+        billDescription.innerHTML = `Description: ${bill.description}`;
+
+        bills.append(
+            billAmount,
+            billDescription
+        );
+    });
+
+    console.log(response);
+}
 
 const fetchMyGroups = async () => {
     const token = localStorage.getItem('token');
@@ -26,6 +55,7 @@ const fetchMyGroups = async () => {
 
         showId.addEventListener('click', () => {
             const groupId = showId.value;
+            fetchBillsForGroup(Number(groupId));
             console.log(groupId);
         });
         
