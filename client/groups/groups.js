@@ -20,7 +20,7 @@ const fetchMyGroups = async () => {
         const showId = document.createElement('p');
         const groupName = document.createElement('a');
 
-        showId.innerHTML = myGroup.group_id;
+        showId.innerHTML = `ID: ${myGroup.group_id}`;
         groupName.innerHTML = myGroup.group_name;
         groupName.value = myGroup.group_id;
         
