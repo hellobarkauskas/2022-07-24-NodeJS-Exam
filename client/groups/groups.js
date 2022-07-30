@@ -15,14 +15,19 @@ const fetchMyGroups = async () => {
 
     myGroups.forEach(myGroup => {
         const group = document.createElement('div');
-        group.classList.add('client');
         groupsList.append(group);
-        const showId = document.createElement('p');
-        const groupName = document.createElement('a');
+        const showId = document.createElement('a');
+        showId.classList.add('for-bills');
+        const groupName = document.createElement('p');
 
         showId.innerHTML = `ID: ${myGroup.group_id}`;
-        groupName.innerHTML = myGroup.group_name;
-        groupName.value = myGroup.group_id;
+        groupName.innerHTML = `Group of ${myGroup.group_name}`;
+        showId.value = myGroup.group_id;
+
+        showId.addEventListener('click', () => {
+            const groupId = showId.value;
+            console.log(groupId);
+        });
         
         group.append(
             showId,
